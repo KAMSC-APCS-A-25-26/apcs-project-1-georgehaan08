@@ -654,7 +654,7 @@ public class TextAdventure {
                         }
                         else
                         {
-                            System.out.println("You Win\nYou can pay back your debt\n You finished with a " + df.format((cash+stockValue) - (debt * (((rate-1) * year)+1))) + "$ profit");
+                            System.out.println("You Win\nYou can pay back your debt\nYou finished with a " + df.format((cash+stockValue) - (debt * (((rate-1) * year)+1))) + "$ profit");
                             System.exit(0); // Exit with a success status
                         }
                     }
