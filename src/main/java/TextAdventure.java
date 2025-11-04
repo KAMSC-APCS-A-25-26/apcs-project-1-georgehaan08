@@ -27,7 +27,7 @@ public class TextAdventure {
                 System.out.println("\nWelcome to Market Maniac!\nIn this game you'll explore the life of an aspiring trader who needs to flip some money around to pay the bills.\nEvery choice you make alters your storyline.\nGood Luck!");
                 System.out.println("\nSelect your difficulty:\n1) Easy\n2) Medium\n3) Hard");
                 difficulty = sc.nextInt();
-
+                //choose difficulty
                 switch (difficulty) {
                     case (1): {
                         System.out.println("\nEasy Mode!");
@@ -45,7 +45,7 @@ public class TextAdventure {
 
                 System.out.println("First things first lets get you some money.\nChoose on of the 3 loan options from below:");
                 System.out.println("\n1) $25,000 with " + (difficulty * 3) + "% interest\n" + "2) $50,000 with " + (difficulty * 5) + "% interest\n" + "3) $100,000 with " + (difficulty * 10) + "% interest");
-
+                //choose bank loan
                 switch (sc.nextInt()) {
                     case (1): {
                         cash = 25000;
@@ -66,13 +66,16 @@ public class TextAdventure {
                         break;
                     }
                 }
+                //output current scores
                 System.out.println("\nGreat choice!\nNow you can see your stats\nThese will be displayed every time a year passes in the game\n");
                 System.out.println("Year: " + year);
                 System.out.println("Net Worth: " + df.format((cash + stockValue)) + "$");
                 System.out.println("Cash Available : " + df.format(cash) + "$");
                 System.out.println("Total Portfolio Value: " + df.format(stockValue) + "$");
                 System.out.println("Amount Owed to Bank: " + df.format((debt)) + "$");
-
+                
+                
+                //First trade
                 System.out.println("\nNow that you've decided to start trading you have an important decision to make.\nShould you leave your girlfriend to focus specifically on trading?\nEnter 1 to leave her, 0 to stay:");
                 if (sc.nextInt() == 1) {
                     System.out.println("\nGreat Choice!\nShe was never that pretty anyway\nAnd a real pain to always listen too...\nYou have all day to look at stocks\nTake a look at this chart\n");
@@ -86,6 +89,8 @@ public class TextAdventure {
                             "│\n" +
                             "└────────────────────────────────────\n" +
                             "   9AM     11AM     1PM     3PM   5PM");
+                    
+                    //Short or buy
                     System.out.println("\nQUICK!\nThe market is going to close at 4PM\nYou only have 5 minutes to place a trade!\n\nWould you like to\n1) Buy the stock\n2) Short the stock");
                     switch (sc.nextInt()) {
                         case (1): {
@@ -121,24 +126,24 @@ public class TextAdventure {
                     System.out.println("\nHOLY COW THEY WENT BANKRUPT!\nDROPPING 100%!");
                     System.out.println("A news report states that Mr. Afsal banned it in class");
                     System.out.println("That's probably why\nAnyways here is your account info\n");
-
+                    //record changes in stock price
                     if ((int) trades[0][0] == 1) {
                         stockValue -= ((double) trades[0][1]);
                     } else if ((int) trades[0][0] == 2) {
                         stockValue += ((double) trades[0][1]);
                     }
-
+                    //apply stock change
                     System.out.println("Year: " + year++);
                     System.out.println("Net Worth: " + df.format((cash + stockValue)) + "$");
                     System.out.println("Cash Available : " + df.format(cash) + "$");
                     System.out.println("Total Portfolio Value: " + df.format(stockValue) + "$");
                     System.out.println("Amount Owed to Bank: " + df.format((debt * (((rate-1) * year)+1))) + "$");
-
+                    //choose a path
                     System.out.println("\nNow that you've dipped your feet in the market lets take a little trip to meet with some experts\n\n1) Go to Patagonia store\n2) Go to underground crypto club");
                     if (sc.nextInt() == 1) {
                         System.out.println("\nWelcome to Patagonia!\nWho will you approach?\n\n1) Chad\n2) Becket\n3) Lancaster");
                         switch (sc.nextInt()) {
-                            case (1): {
+                            case (1): { //talk to one of 3 people, each has different stock recs and ideas, and outcomes
                                 System.out.println("\nme name chad, what you want?");
                                 System.out.println("Select your response:\n\n1) Can I get some advice with stocks? \n2) What patagonia vest should I buy?");
                                 if (sc.nextInt() == 1) {
@@ -292,7 +297,7 @@ public class TextAdventure {
                             }
                         }
                     }
-                    else
+                    else // you go to crypto underground and ask 1 of 3 people for advice, many different outcomes
                     {
                         System.out.println("\nWelcome to CRYPTO UNDERGROUND!\nWho will you approach?\n\n1) Dax\n2) Henry\n3) xx_ProTrader69_xx");
                         switch (sc.nextInt()) {
@@ -353,41 +358,41 @@ public class TextAdventure {
                                 System.out.println("\nHey man, I'm Henry, how can I help you?");
                                 System.out.println("Select your response:\n\n1) Can I get some advice with stocks? \n2) Rob his ahh");
                                 if (sc.nextInt() == 1)
+                                {
+                                    System.out.println("Nah I aint gonna help u\nLeave before I swiss cheese your ahh");
+                                    System.out.println("Select your response:\n\n1) Leave \n2) Stay");
+                                    if (sc.nextInt() == 1)
                                     {
-                                        System.out.println("Nah I aint gonna help u\nLeave before I swiss cheese your ahh");
-                                        System.out.println("Select your response:\n\n1) Leave \n2) Stay");
-                                        if (sc.nextInt() == 1)
-                                        {
-                                            System.out.println("Good Boy -Henry");
-                                        }
-                                        else
-                                        {
-                                            System.out.println("He robs you and wires all your cash to his account\nYour cash is now at 0\n\nRESULTS:\n");
-                                            cash = 0;
-                                            System.out.println("Net Worth: " + df.format((cash + stockValue)) + "$");
-                                            System.out.println("Cash Available : " + df.format(cash) + "$");
-                                            System.out.println("Total Portfolio Value: " + df.format(stockValue) + "$");
-                                            System.out.println("Amount Owed to Bank: " + df.format((debt * (((rate-1) * year)+1))) + "$");
-
-                                            if((debt * (((rate-1) * year)+1)) > (cash+stockValue))
-                                            {
-                                                System.out.println("You Lose\nYou cant pay back your debt");
-                                                System.exit(0); // Exit with a success status
-                                            }
-                                            else
-                                            {
-                                                System.out.println("You Win\nYou can pay back your debt\n You finished with a " + df.format((cash+stockValue) - (debt * (((rate-1) * year)+1))) + "$ profit");
-                                                System.exit(0); // Exit with a success status
-                                            }
-                                        }
+                                        System.out.println("Good Boy -Henry");
                                     }
                                     else
                                     {
-                                        System.out.println("IT WORKED!\nYou took 20 bucks from him\nIt has been added to your running total for cash");
-                                        cash += 20;
+                                        System.out.println("He robs you and wires all your cash to his account\nYour cash is now at 0\n\nRESULTS:\n");
+                                        cash = 0;
+                                        System.out.println("Net Worth: " + df.format((cash + stockValue)) + "$");
+                                        System.out.println("Cash Available : " + df.format(cash) + "$");
+                                        System.out.println("Total Portfolio Value: " + df.format(stockValue) + "$");
+                                        System.out.println("Amount Owed to Bank: " + df.format((debt * (((rate-1) * year)+1))) + "$");
+
+                                        if((debt * (((rate-1) * year)+1)) > (cash+stockValue))
+                                        {
+                                            System.out.println("You Lose\nYou cant pay back your debt");
+                                            System.exit(0); // Exit with a success status
+                                        }
+                                        else
+                                        {
+                                            System.out.println("You Win\nYou can pay back your debt\n You finished with a " + df.format((cash+stockValue) - (debt * (((rate-1) * year)+1))) + "$ profit");
+                                            System.exit(0); // Exit with a success status
+                                        }
                                     }
-                                    break;
                                 }
+                                else
+                                {
+                                    System.out.println("IT WORKED!\nYou took 20 bucks from him\nIt has been added to your running total for cash");
+                                    cash += 20;
+                                }
+                                break;
+                            }
                             case (3):
                             {
                                 System.out.println("\nGreetings noob\nI am the best memecoin trader of all time");
@@ -487,7 +492,7 @@ public class TextAdventure {
                     }
 
                 }
-                else
+                else // if you stay with your girl you can do your first trade
                 {
                     System.out.println("\nYour a good person\nNever put money over relationships\nYou only have 3 hours daily to trade because of her\nTake a look at this stock chart\n");
                     System.out.println("PolyTrack Inc\n" +
@@ -550,10 +555,10 @@ public class TextAdventure {
                     System.out.println("Cash Available : " + df.format(cash) + "$");
                     System.out.println("Total Portfolio Value: " + df.format(stockValue) + "$");
                     System.out.println("Amount Owed to Bank: " + df.format((debt * (((rate-1) * year)+1))) + "$");
-
+                    // data
                     System.out.println("\nYour girlfriend wants to go to a dinner reservation on the bad side of town");
                     System.out.println("Select your response:\n\n1) I'll go! \n2) Nope");
-                    if (sc.nextInt() == 1)
+                    if (sc.nextInt() == 1) // whether you win or lose
                     {
                         System.out.println("It was going well until you got mugged by 4 men in suits\nThey take you out back and make you drain your account\nShe was a rat trying to steal money from you!\n\nNow you have to pay back your debt of " + df.format((debt * (((rate-1) * year)+1))) + "$");
                         if((debt * (((rate-1) * year)+1)) > (cash+stockValue))
@@ -567,7 +572,7 @@ public class TextAdventure {
                             System.exit(0); // Exit with a success status
                         }
                     }
-                    else
+                    else // another trade option
                     {
                         System.out.println("Good choice\nInstead you hop on robinhood and see the AiOpen is going to IPO\nWhats your move?");
                         System.out.println("\nWould you like to\n1) Buy the stock\n2) Short the stock");
@@ -608,7 +613,7 @@ public class TextAdventure {
 
                         System.out.println("Your loving trading\nAnd your girlfriends lack of love gets you hooked\nYour addicted to trading");
                         System.out.println("Now you are stuck in a loop for the next 3 years of your life\nUntil you lose it all or win");
-                        for(int i=0;i<3;i++)
+                        for(int i=0;i<3;i++) // for loop for trading addiction 3 years long
                         {
                             System.out.println("\nWould you like to\n1) Buy the stock\n2) Short the stock");
                             switch (sc.nextInt()) {
@@ -659,18 +664,18 @@ public class TextAdventure {
                         }
                     }
                 }
-            System.out.println("Would you like to play again?\n\n1) Yes\n2)No");
-            if(sc.nextInt()==1)
-            {
-                continue;
-            }
-            else
-            {
-                playing = false;
-            }
+                System.out.println("Would you like to play again?\n\n1) Yes\n2)No");
+                if(sc.nextInt()==1)
+                {
+                    continue;
+                }
+                else
+                {
+                    playing = false;
+                }
             }
         }
-        else
+        else // you quit
         {
             System.out.println("Goodbye!");
         }
